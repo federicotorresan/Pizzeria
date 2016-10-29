@@ -2,23 +2,13 @@ import java.util.ArrayList;
 
 public class Lista {
 	
-	ArrayList<String> pizze = new ArrayList<String>();
+	public static String pizze[]={"Margherita","Diavola","Prosciutto e funghi","Quattro stagioni","Quattro formaggi" };
 	
-	public void listino(){
-		pizze.add("Margherita");
-		pizze.add("Diavola");
-		pizze.add("Prosciutto e funghi");
-		pizze.add("Quattro stagioni");
-		pizze.add("Quattro formaggi");
-		String pizza=pizze.remove(0);
-	}
+	ArrayList<String> pizzeInCoda= new ArrayList<String>();
 	
-	public synchronized int pizzaInLista(String pizza){
-		this.pizza=pizza;
-		notifyAll();
-		return pizza;
-	}
+	ArrayList<String> pizzePronte= new ArrayList<String>();
 }
+
 
 
 

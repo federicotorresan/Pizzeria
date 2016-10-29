@@ -52,8 +52,8 @@ public class Grafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				Pizzaiolo pizzaiolo1=new Pizzaiolo(listino);
-				Pizzaiolo pizzaiolo2=new Pizzaiolo(listino);
+				Pizzaiolo pizzaiolo1=new Pizzaiolo(pizze);
+				Pizzaiolo pizzaiolo2=new Pizzaiolo(pizze);
 				Thread t1=new Thread(pizzaiolo1);
 				Thread t2= new Thread(pizzaiolo2);
 				t1.start();
@@ -73,7 +73,9 @@ public class Grafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				
+				Cliente cliente=new Cliente(pizze);
+				Thread t1 = new Thread(cliente);
+				t1.start();
 				
 			}
 		});
