@@ -7,8 +7,8 @@ public class Lista {
 	ArrayList<String> pizzeInCoda= new ArrayList<String>();
 	
 	ArrayList<String> pizzePronte= new ArrayList<String>();
+	
+	public String getPizza(int n){
+		return pizze[n];
+	}
 }
-
-
-
-
