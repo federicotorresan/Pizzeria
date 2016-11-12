@@ -1,28 +1,21 @@
 
-public class Cliente extends Thread {
-	
+public class Cliente implements Runnable {
+
+	String Pizza;
 	Lista listino;
-	int a;
-	String pizza;
-	
-	public Cliente(Lista listino){
-		this.listino=listino;
+
+	public Cliente (String Pizza, Lista listino){
+		this.listino = listino;
+		this.Pizza = Pizza;
 	}
 	
-	public void setPizza(String pizza,int a){
-		this.pizza=pizza;
-		this.a=a;
+	@Override
+	public void run() {
+		//ordina la pizza
+		listino.ordinaPizza(Pizza);	
+		//controlla se la pizza è pronta
+		listino.prelevaPizza(Pizza);
+	
 	}
 
-	public synchronized void run(){
-		System.out.println("pizza: "+listino.pizze[a]);
-		listino.pizzeInCoda.add(pizza);
-		try {
-			wait();
-		} catch (InterruptedException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
-		
-	}
 }

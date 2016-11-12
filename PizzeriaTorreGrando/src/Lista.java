@@ -4,7 +4,7 @@ public class Lista {
 	ArrayList<String> pizzeOrdinate;
 	ArrayList<String> pizzeCotte;
 	ArrayList<String> pizzeInCoda;
-	public Lista pizzeCotte;
+	public Lista pizzePronte;
 
 	// costruttore
 	public Lista() {

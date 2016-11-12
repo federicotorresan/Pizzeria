@@ -1,6 +1,6 @@
 
-public class Pizzaiolo extends Thread {
-	
+public class Pizzaiolo implements Runnable{
+
 	private Lista listino;
 	private String pizza;
 	
@@ -14,7 +14,7 @@ public class Pizzaiolo extends Thread {
 		// gira all'infinito
 		while(true){
 			// controlla se c'è una pizza
-			pizza = listino.pizzaInCoda();//ritorna il nome della pizza
+			pizza = listino.pizzaInLista();//ritorna il nome della pizza
 			// fa la pizza (aspetta)
 			System.out.println(Thread.currentThread().getName()+" sta facendo pizza: " + pizza);
 			try {
