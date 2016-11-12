@@ -23,27 +23,27 @@ public class Lista {
 	public synchronized String pizzaInLista() {
 		while (pizzeOrdinate.isEmpty()) { // true se è vuoto
 			try {
-				System.out.println("sto aspettando");
+				System.out.println("Attesa");
 				wait();
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();
 			}
 		}
-		System.out.println("HO FINITO DI ASPETTARE");
+		System.out.println("Fine attesa");
 		return pizzeOrdinate.remove(0);
 	}
-	
-	public synchronized void pizzaPronta(String NomePizza){
+
+	public synchronized void pizzaPronta(String NomePizza) {
 		pizzeInCoda.add(NomePizza);
 		pizzeCotte.add(NomePizza);
 		notifyAll();
 		System.out.println("La pizza : " + NomePizza + " è pronta");
-		
+
 	}
-	
-	public synchronized void prelevaPizza(String NomePizza){
-		while (!pizzeCotte.contains(NomePizza)){
+
+	public synchronized void prelevaPizza(String NomePizza) {
+		while (!pizzeCotte.contains(NomePizza)) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -71,10 +71,4 @@ public class Lista {
 	public void setPizzePronte(ArrayList<String> pizzePronte) {
 		this.pizzeCotte = pizzePronte;
 	}
-
-
-	
-	
-	
-
 }

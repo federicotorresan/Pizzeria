@@ -16,7 +16,7 @@ public class Pizzaiolo implements Runnable{
 			// controlla se c'è una pizza
 			pizza = listino.pizzaInLista();//ritorna il nome della pizza
 			// fa la pizza (aspetta)
-			System.out.println(Thread.currentThread().getName()+" sta facendo pizza: " + pizza);
+			System.out.println(Thread.currentThread().getName()+" Pizza in preparazione: " + pizza);
 			try {
 				Thread.sleep(1000);
 			} catch (InterruptedException e) {

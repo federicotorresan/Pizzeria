@@ -15,13 +15,13 @@ import org.eclipse.swt.events.SelectionEvent;
 public class Grafica {
 	
 	
-	protected Shell shell;
+	protected Shell shlPizzeriaTorregrando;
 	private Text txtPizza;
 	public Lista listino;
 	private String Pizza;
 	public int pizzeCoda = 0;
 	Lista ls = new Lista();
-	public int chiave = 0;
+	public int num = 0;
 	
 
 
@@ -44,9 +44,9 @@ public class Grafica {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shlPizzeriaTorregrando.open();
+		shlPizzeriaTorregrando.layout();
+		while (!shlPizzeriaTorregrando.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -59,20 +59,20 @@ public class Grafica {
 	protected void createContents() {
 		listino= new Lista();//creato la lista
 		
-		shell = new Shell();
-		shell.setSize(450, 300);
-		shell.setText("SWT Application");
+		shlPizzeriaTorregrando = new Shell();
+		shlPizzeriaTorregrando.setSize(450, 424);
+		shlPizzeriaTorregrando.setText("Pizzeria TorreGrando");
 		
-		List listCoda = new List(shell, SWT.BORDER);
-		listCoda.setBounds(10, 93, 116, 159);
+		List listCoda = new List(shlPizzeriaTorregrando, SWT.BORDER);
+		listCoda.setBounds(10, 170, 116, 159);
 		
-		List listCottura = new List(shell, SWT.BORDER);
-		listCottura.setBounds(145, 92, 116, 160);
+		List listCottura = new List(shlPizzeriaTorregrando, SWT.BORDER);
+		listCottura.setBounds(151, 170, 116, 160);
 		
-		List listPronte = new List(shell, SWT.BORDER);
-		listPronte.setBounds(308, 93, 116, 159);
+		List listPronte = new List(shlPizzeriaTorregrando, SWT.BORDER);
+		listPronte.setBounds(308, 170, 116, 159);
 		
-		Button btnApri = new Button(shell, SWT.NONE);
+		Button btnApri = new Button(shlPizzeriaTorregrando, SWT.NONE);
 		btnApri.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -84,30 +84,30 @@ public class Grafica {
 				Thread t2 = new Thread(pizzaiolo2);
 				t2.setName("Pizzaiolo 2");
 				t2.start();
-				chiave = 1;
+				num = 1;
 			}
 		});
-		btnApri.setBounds(10, 61, 75, 25);
+		btnApri.setBounds(10, 21, 75, 25);
 		btnApri.setText("Apri Pizzeria");
 		
-		Button btnChiudi = new Button(shell, SWT.NONE);
+		Button btnChiudi = new Button(shlPizzeriaTorregrando, SWT.NONE);
 		btnChiudi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				chiave = 0;
+				num = 0;
 			}
 		});
-		btnChiudi.setBounds(145, 61, 89, 25);
+		btnChiudi.setBounds(335, 351, 89, 25);
 		btnChiudi.setText("Chiudi Pizzeria");
 		
-		Button btnCliente = new Button(shell, SWT.NONE);
+		Button btnCliente = new Button(shlPizzeriaTorregrando, SWT.NONE);
 		btnCliente.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
-				if (chiave == 1){
+				if (num == 1){
 					Pizza = txtPizza.getText();
 					if (Pizza.isEmpty()){
-						JOptionPane.showMessageDialog(null, "Inserisci il nome della pizza", "ERRORE", JOptionPane.ERROR_MESSAGE);//crea il messaggio d'errore
+						JOptionPane.showMessageDialog(null, "Manca nome pizza", "ERRORE", JOptionPane.ERROR_MESSAGE);
 					}
 					else {
 						Cliente c = new Cliente(Pizza, listino);
@@ -119,22 +119,34 @@ public class Grafica {
 					}
 				}
 				else {
-					JOptionPane.showMessageDialog(null, "Devi prima cliccare il bottone che apre la pizzeria", "ERRORE", JOptionPane.ERROR_MESSAGE);//crea il messaggio d'errore
+					JOptionPane.showMessageDialog(null, "Apri pizzeria", "ERRORE", JOptionPane.ERROR_MESSAGE);
 				}
 				
 			}
 		});
-		btnCliente.setBounds(308, 61, 100, 25);
-		btnCliente.setText("Arriva un cliente");
+		btnCliente.setBounds(10, 101, 100, 25);
+		btnCliente.setText("Arriva cliente");
 		
 		
 		
-		Label lblInserisci = new Label(shell, SWT.NONE);
-		lblInserisci.setBounds(10, 22, 154, 15);
+		Label lblInserisci = new Label(shlPizzeriaTorregrando, SWT.NONE);
+		lblInserisci.setBounds(10, 66, 154, 15);
 		lblInserisci.setText("Inserisci qui la tua pizza : ");
 		
-		txtPizza = new Text(shell, SWT.BORDER);
-		txtPizza.setBounds(185, 22, 170, 21);
+		txtPizza = new Text(shlPizzeriaTorregrando, SWT.BORDER);
+		txtPizza.setBounds(177, 63, 170, 21);
+		
+		Label lblPizzeInCoda = new Label(shlPizzeriaTorregrando, SWT.NONE);
+		lblPizzeInCoda.setBounds(10, 149, 75, 15);
+		lblPizzeInCoda.setText("Pizze in coda");
+		
+		Label lblPizzeInCottura = new Label(shlPizzeriaTorregrando, SWT.NONE);
+		lblPizzeInCottura.setBounds(151, 149, 89, 15);
+		lblPizzeInCottura.setText("Pizze in cottura");
+		
+		Label lblPizzePronte = new Label(shlPizzeriaTorregrando, SWT.NONE);
+		lblPizzePronte.setBounds(308, 149, 75, 15);
+		lblPizzePronte.setText("Pizze pronte");
 
 	}
 }
