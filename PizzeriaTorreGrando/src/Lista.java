@@ -14,8 +14,8 @@ public class Lista {
 	}
 
 	// metodi
-	public synchronized void ordinaPizza(String NomePizza) {
-		pizzeOrdinate.add(NomePizza);
+	public synchronized void ordinaPizza(String nome) {
+		pizzeOrdinate.add(nome);
 		System.out.println("ho aggiunto una pizza al vettore ordinazione pizze");
 		notifyAll();
 	}
@@ -34,16 +34,16 @@ public class Lista {
 		return pizzeOrdinate.remove(0);
 	}
 
-	public synchronized void pizzaPronta(String NomePizza) {
-		pizzeInCoda.add(NomePizza);
-		pizzeCotte.add(NomePizza);
+	public synchronized void pizzaPronta(String nome) {
+		pizzeInCoda.add(nome);
+		pizzeCotte.add(nome);
 		notifyAll();
-		System.out.println("La pizza : " + NomePizza + " è pronta");
+		System.out.println("La pizza : " + nome + " è pronta");
 
 	}
 
-	public synchronized void prelevaPizza(String NomePizza) {
-		while (!pizzeCotte.contains(NomePizza)) {
+	public synchronized void prelevaPizza(String nome) {
+		while (!pizzeCotte.contains(nome)) {
 			try {
 				wait();
 			} catch (InterruptedException e) {
@@ -51,9 +51,9 @@ public class Lista {
 				e.printStackTrace();
 			}
 		}
-		pizzeInCoda.remove(NomePizza);
-		pizzeCotte.remove(NomePizza);
-		System.out.println("Ho prelevato la pizza " + NomePizza);
+		pizzeInCoda.remove(nome);
+		pizzeCotte.remove(nome);
+		System.out.println("Ho prelevato la pizza " + nome);
 	}
 
 	public ArrayList<String> getOrdinazioniPizze() {
