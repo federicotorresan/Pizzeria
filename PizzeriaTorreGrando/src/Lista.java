@@ -16,7 +16,7 @@ public class Lista {
 	// metodi
 	public synchronized void ordinaPizza(String nome) {
 		pizzeOrdinate.add(nome);
-		System.out.println("ho aggiunto una pizza al vettore ordinazione pizze");
+		System.out.println("ho aggiunto una pizza");
 		notifyAll();
 	}
 

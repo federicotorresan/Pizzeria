@@ -60,17 +60,17 @@ public class Grafica {
 		listino= new Lista();//creato la lista
 		
 		shlPizzeriaTorregrando = new Shell();
-		shlPizzeriaTorregrando.setSize(450, 424);
+		shlPizzeriaTorregrando.setSize(450, 345);
 		shlPizzeriaTorregrando.setText("Pizzeria TorreGrando");
 		
 		List listCoda = new List(shlPizzeriaTorregrando, SWT.BORDER);
-		listCoda.setBounds(10, 170, 116, 159);
+		listCoda.setBounds(10, 170, 116, 85);
 		
-		List listCottura = new List(shlPizzeriaTorregrando, SWT.BORDER);
-		listCottura.setBounds(151, 170, 116, 160);
+		List listCucina = new List(shlPizzeriaTorregrando, SWT.BORDER);
+		listCucina.setBounds(151, 170, 116, 85);
 		
-		List listPronte = new List(shlPizzeriaTorregrando, SWT.BORDER);
-		listPronte.setBounds(308, 170, 116, 159);
+		List listCotte = new List(shlPizzeriaTorregrando, SWT.BORDER);
+		listCotte.setBounds(308, 170, 116, 85);
 		
 		Button btnApri = new Button(shlPizzeriaTorregrando, SWT.NONE);
 		btnApri.addSelectionListener(new SelectionAdapter() {
@@ -97,7 +97,7 @@ public class Grafica {
 				num = 0;
 			}
 		});
-		btnChiudi.setBounds(335, 351, 89, 25);
+		btnChiudi.setBounds(335, 275, 89, 25);
 		btnChiudi.setText("Chiudi Pizzeria");
 		
 		Button btnCliente = new Button(shlPizzeriaTorregrando, SWT.NONE);
@@ -113,8 +113,8 @@ public class Grafica {
 						Cliente c = new Cliente(Pizza, listino);
 						Thread ThreadCliente = new Thread(c);
 						ThreadCliente.start();
-						
 						listCoda.add(Pizza);
+						
 						pizzeCoda++;	
 					}
 				}
@@ -130,11 +130,11 @@ public class Grafica {
 		
 		
 		Label lblInserisci = new Label(shlPizzeriaTorregrando, SWT.NONE);
-		lblInserisci.setBounds(10, 66, 154, 15);
-		lblInserisci.setText("Inserisci qui la tua pizza : ");
+		lblInserisci.setBounds(10, 66, 125, 15);
+		lblInserisci.setText("Inserisci la pizza:");
 		
 		txtPizza = new Text(shlPizzeriaTorregrando, SWT.BORDER);
-		txtPizza.setBounds(177, 63, 170, 21);
+		txtPizza.setBounds(151, 63, 170, 21);
 		
 		Label lblPizzeInCoda = new Label(shlPizzeriaTorregrando, SWT.NONE);
 		lblPizzeInCoda.setBounds(10, 149, 75, 15);
