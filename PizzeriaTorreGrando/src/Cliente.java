@@ -3,16 +3,20 @@ public class Cliente extends Thread {
 	
 	Lista listino;
 	int a;
+	String pizza;
 	
 	public Cliente(Lista listino){
 		this.listino=listino;
 	}
+	
+	public void setPizza(String pizza,int a){
+		this.pizza=pizza;
+		this.a=a;
+	}
 
 	public synchronized void run(){
-		a=(int)(Math.random()*5);
 		System.out.println("pizza: "+listino.pizze[a]);
-		listino.pizzeInCoda.add(listino.pizze[a]);
-		
+		listino.pizzeInCoda.add(pizza);
 		try {
 			wait();
 		} catch (InterruptedException e) {

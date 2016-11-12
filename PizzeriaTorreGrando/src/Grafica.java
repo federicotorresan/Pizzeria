@@ -6,15 +6,17 @@ import org.eclipse.swt.widgets.List;
 import org.eclipse.swt.events.SelectionAdapter;
 import org.eclipse.swt.events.SelectionEvent;
 import org.eclipse.swt.widgets.Label;
+import org.eclipse.swt.widgets.Text;
 
 public class Grafica {
 
-	protected Shell shell;
+	protected Shell shlPizzeria;
 	protected Shell dialog;
 	protected Shell pizza;
 	List list;
 	Label lblNewLabel;
 	Label lblLabelpizza;
+	private Text textPizza;
 
 	/**
 	 * Launch the application.
@@ -35,9 +37,9 @@ public class Grafica {
 	public void open() {
 		Display display = Display.getDefault();
 		createContents();
-		shell.open();
-		shell.layout();
-		while (!shell.isDisposed()) {
+		shlPizzeria.open();
+		shlPizzeria.layout();
+		while (!shlPizzeria.isDisposed()) {
 			if (!display.readAndDispatch()) {
 				display.sleep();
 			}
@@ -48,9 +50,9 @@ public class Grafica {
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		shell = new Shell();
-		shell.setSize(500, 400);
-		shell.setText("SWT Application");
+		shlPizzeria = new Shell();
+		shlPizzeria.setSize(500, 400);
+		shlPizzeria.setText("Pizzeria ");
 		
 		pizza = new Shell();
 		pizza.setText("Pizza");
@@ -71,7 +73,7 @@ public class Grafica {
 		lblLabelpizza.setBounds(80, 43, 55, 15);
 
 		
-		Button btnApriPizzeria = new Button(shell, SWT.NONE);
+		Button btnApriPizzeria = new Button(shlPizzeria, SWT.NONE);
 		btnApriPizzeria.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -81,14 +83,14 @@ public class Grafica {
 			}	
 		}
 		);
-		btnApriPizzeria.setBounds(10, 55, 89, 25);
+		btnApriPizzeria.setBounds(10, 76, 89, 25);
 		btnApriPizzeria.setText("Apri pizzeria");
 		
-		Button btnChiudiPizzeria = new Button(shell, SWT.NONE);
-		btnChiudiPizzeria.setBounds(142, 55, 89, 25);
+		Button btnChiudiPizzeria = new Button(shlPizzeria, SWT.NONE);
+		btnChiudiPizzeria.setBounds(194, 76, 89, 25);
 		btnChiudiPizzeria.setText("Chiudi pizzeria");
 		
-		Button btnArriva = new Button(shell, SWT.NONE);
+		Button btnArriva = new Button(shlPizzeria, SWT.NONE);
 		btnArriva.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
@@ -97,29 +99,36 @@ public class Grafica {
 				
 			}
 		});
-		btnArriva.setBounds(351, 55, 109, 25);
+		btnArriva.setBounds(351, 76, 109, 25);
 		btnArriva.setText("Arriva un cliente!");
 		
-		List pizze_coda = new List(shell, SWT.BORDER);
+		List pizze_coda = new List(shlPizzeria, SWT.BORDER);
 		pizze_coda.setBounds(10, 130, 124, 191);
 		
-		List pizze_cottura = new List(shell, SWT.BORDER);
+		List pizze_cottura = new List(shlPizzeria, SWT.BORDER);
 		pizze_cottura.setBounds(177, 130, 124, 191);
 		
-		List pizze_pronte = new List(shell, SWT.BORDER);
+		List pizze_pronte = new List(shlPizzeria, SWT.BORDER);
 		pizze_pronte.setBounds(351, 130, 109, 191);
 		
-		Label lblPizz = new Label(shell, SWT.NONE);
+		Label lblPizz = new Label(shlPizzeria, SWT.NONE);
 		lblPizz.setBounds(24, 107, 75, 15);
 		lblPizz.setText("Pizze in coda");
 		
-		Label lblPizzeInCottura = new Label(shell, SWT.NONE);
+		Label lblPizzeInCottura = new Label(shlPizzeria, SWT.NONE);
 		lblPizzeInCottura.setBounds(194, 107, 89, 15);
 		lblPizzeInCottura.setText("Pizze in cottura");
 		
-		Label lblPizzePronte = new Label(shell, SWT.NONE);
+		Label lblPizzePronte = new Label(shlPizzeria, SWT.NONE);
 		lblPizzePronte.setBounds(370, 107, 64, 15);
 		lblPizzePronte.setText("Pizze pronte");
+		
+		Label lblPizza = new Label(shlPizzeria, SWT.NONE);
+		lblPizza.setBounds(25, 31, 89, 15);
+		lblPizza.setText("Inserisci la pizza:");
+		
+		textPizza = new Text(shlPizzeria, SWT.BORDER);
+		textPizza.setBounds(120, 25, 76, 21);
 
 	}
 }
