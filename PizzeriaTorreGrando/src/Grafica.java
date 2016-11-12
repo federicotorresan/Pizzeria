@@ -10,6 +10,11 @@ import org.eclipse.swt.widgets.Label;
 public class Grafica {
 
 	protected Shell shell;
+	protected Shell dialog;
+	protected Shell pizza;
+	List list;
+	Label lblNewLabel;
+	Label lblLabelpizza;
 
 	/**
 	 * Launch the application.
@@ -47,20 +52,35 @@ public class Grafica {
 		shell.setSize(500, 400);
 		shell.setText("SWT Application");
 		
+		pizza = new Shell();
+		pizza.setText("Pizza");
+		pizza.setSize(200, 200);
+
+		dialog = new Shell();
+		dialog.setText("Cliente");
+		dialog.setSize(200, 200);
+
+		Lista lp = new Lista();
+		Pizzaiolo p = new Pizzaiolo(lp);
+		Cliente c1 = new Cliente(lp);
+
+		lblNewLabel = new Label(pizza, SWT.NONE);
+		lblNewLabel.setBounds(0, 50, 200, 200);
+
+		lblLabelpizza = new Label(dialog, SWT.NONE);
+		lblLabelpizza.setBounds(80, 43, 55, 15);
+
+		
 		Button btnApriPizzeria = new Button(shell, SWT.NONE);
 		btnApriPizzeria.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				Pizzaiolo pizzaiolo1=new Pizzaiolo(pizze);
-				Pizzaiolo pizzaiolo2=new Pizzaiolo(pizze);
-				Thread t1=new Thread(pizzaiolo1);
-				Thread t2= new Thread(pizzaiolo2);
-				t1.start();
-				t2.start();
 				
-			}
-		});
+
+			}	
+		}
+		);
 		btnApriPizzeria.setBounds(10, 55, 89, 25);
 		btnApriPizzeria.setText("Apri pizzeria");
 		
@@ -73,9 +93,7 @@ public class Grafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				
-				Cliente cliente=new Cliente(pizze);
-				Thread t1 = new Thread(cliente);
-				t1.start();
+				
 				
 			}
 		});

@@ -9,7 +9,7 @@ public class Pizzaiolo extends Thread {
 		this.listino=listino;
 	}
 	
-	public void run(){
+	public synchronized void run(){
 		if(listino.pizzeInCoda.isEmpty()==false){
 			pizza=listino.pizzeInCoda.get(0);
 		}

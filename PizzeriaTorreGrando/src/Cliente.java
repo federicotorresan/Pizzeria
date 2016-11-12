@@ -8,7 +8,7 @@ public class Cliente extends Thread {
 		this.listino=listino;
 	}
 
-	public void run(){
+	public synchronized void run(){
 		a=(int)(Math.random()*5);
 		System.out.println("pizza: "+listino.pizze[a]);
 		listino.pizzeInCoda.add(listino.pizze[a]);
