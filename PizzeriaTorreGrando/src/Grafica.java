@@ -2,6 +2,14 @@ import org.eclipse.swt.widgets.Display;
 import org.eclipse.swt.widgets.Shell;
 import org.eclipse.swt.widgets.Button;
 
+import java.io.File;
+import java.io.IOException;
+
+import javax.sound.sampled.AudioInputStream;
+import javax.sound.sampled.AudioSystem;
+import javax.sound.sampled.Clip;
+import javax.sound.sampled.LineUnavailableException;
+import javax.sound.sampled.UnsupportedAudioFileException;
 import javax.swing.JOptionPane;
 
 import org.eclipse.swt.SWT;
@@ -26,6 +34,10 @@ public class Grafica {
 	List listCucina;
 	List listCotte;
 	Display display;
+	private AudioInputStream sound;
+	private Clip Pizzaordinata;
+	private Clip Pizzeriachiusa;
+	
 
 
 	/**
@@ -112,10 +124,10 @@ public class Grafica {
 				Pizzaiolo pizzaiolo1 = new Pizzaiolo(listino);
 				Pizzaiolo pizzaiolo2 = new Pizzaiolo(listino);
 				Thread t1 = new Thread(pizzaiolo1);
-				t1.setName("Pizzaiolo 1");
+				t1.setName("Pizzaiolo 1: ");
 				t1.start();
 				Thread t2 = new Thread(pizzaiolo2);
-				t2.setName("Pizzaiolo 2");
+				t2.setName("Pizzaiolo 2: ");
 				t2.start();
 				num = 1;
 			}
@@ -127,6 +139,19 @@ public class Grafica {
 		btnChiudi.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
+				try {
+					String path = "src/Pizzeriachiusa.wav";
+					sound = AudioSystem.getAudioInputStream(new File(path));
+					Pizzeriachiusa = AudioSystem.getClip();
+					Pizzeriachiusa.open(sound);
+					} catch (UnsupportedAudioFileException | IOException e1) {
+					e1.printStackTrace();
+					} catch (LineUnavailableException e1) {
+					e1.printStackTrace();
+					}
+					Pizzeriachiusa.start();
+				
 				num = 0;
 				System.out.println("Pizzeria chiusa");
 			}
@@ -138,6 +163,19 @@ public class Grafica {
 		btnCliente.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
+				try {
+					String path = "src/Pizzaordinata.wav";
+					sound = AudioSystem.getAudioInputStream(new File(path));
+					Pizzaordinata = AudioSystem.getClip();
+					Pizzaordinata.open(sound);
+					} catch (UnsupportedAudioFileException | IOException e1) {
+					e1.printStackTrace();
+					} catch (LineUnavailableException e1) {
+					e1.printStackTrace();
+					}
+					Pizzaordinata.start();
+				
 				if (num == 1){
 					Pizza = txtPizza.getText();
 					if (Pizza.isEmpty()){
