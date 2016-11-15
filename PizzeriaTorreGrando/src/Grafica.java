@@ -37,6 +37,7 @@ public class Grafica {
 	private AudioInputStream sound;
 	private Clip Pizzaordinata;
 	private Clip Pizzeriachiusa;
+	private Clip Pizzeriaaperta;
 	
 
 
@@ -120,6 +121,19 @@ public class Grafica {
 		btnApri.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				
+				try {
+					String path = "src/Pizzeriaaperta.wav";
+					sound = AudioSystem.getAudioInputStream(new File(path));
+					Pizzeriaaperta = AudioSystem.getClip();
+					Pizzeriaaperta.open(sound);
+					} catch (UnsupportedAudioFileException | IOException e1) {
+					e1.printStackTrace();
+					} catch (LineUnavailableException e1) {
+					e1.printStackTrace();
+					}
+					Pizzeriaaperta.start();
+				
 				System.out.println("Pizzeria aperta");
 				Pizzaiolo pizzaiolo1 = new Pizzaiolo(listino);
 				Pizzaiolo pizzaiolo2 = new Pizzaiolo(listino);
