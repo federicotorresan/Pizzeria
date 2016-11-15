@@ -165,9 +165,12 @@ public class Grafica {
 					e1.printStackTrace();
 					}
 					Pizzeriachiusa.start();
+					
+					
 				
 				num = 0;
 				System.out.println("Pizzeria chiusa");
+				JOptionPane.showMessageDialog(null, "La pizzeria è chiusa!", "INFORMAZIONE", JOptionPane.INFORMATION_MESSAGE);
 			}
 		});
 		btnChiudi.setBounds(335, 275, 89, 25);
