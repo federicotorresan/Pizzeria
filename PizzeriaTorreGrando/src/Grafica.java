@@ -20,9 +20,12 @@ public class Grafica {
 	public Lista listino;
 	private String Pizza;
 	public int pizzeCoda = 0;
-	Lista ls = new Lista();
+	Lista ls;
 	public int num = 0;
-	
+	List listCoda;
+	List listCucina;
+	List listCotte;
+	Display display;
 
 
 	/**
@@ -42,7 +45,7 @@ public class Grafica {
 	 * Open the window.
 	 */
 	public void open() {
-		Display display = Display.getDefault();
+		display = Display.getDefault();
 		createContents();
 		shlPizzeriaTorregrando.open();
 		shlPizzeriaTorregrando.layout();
@@ -53,29 +56,59 @@ public class Grafica {
 		}
 	}
 
+	public void aggiungiNuovoOrdine(String s) {
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				listCoda.add(s);				
+			}
+		});		
+	}
+	
+	public void aggiungiNuovaCottura(String s) {
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				listCoda.remove(s);	
+				listCucina.add(s);
+				}
+		});		
+	}
+	
+	public void aggiungiNuovaPizzaPronta(String s) {
+		display.asyncExec(new Runnable() {			
+			@Override
+			public void run() {
+				listCucina.remove(s);		
+				listCotte.add(s);
+			}
+		});		
+	}
+	
 	/**
 	 * Create contents of the window.
 	 */
 	protected void createContents() {
-		listino= new Lista();//creato la lista
+		listino= new Lista(this);//creato la lista
 		
 		shlPizzeriaTorregrando = new Shell();
 		shlPizzeriaTorregrando.setSize(450, 345);
 		shlPizzeriaTorregrando.setText("Pizzeria TorreGrando");
 		
-		List listCoda = new List(shlPizzeriaTorregrando, SWT.BORDER);
+		listCoda = new List(shlPizzeriaTorregrando, SWT.BORDER);
 		listCoda.setBounds(10, 170, 116, 85);
 		
-		List listCucina = new List(shlPizzeriaTorregrando, SWT.BORDER);
+		listCucina = new List(shlPizzeriaTorregrando, SWT.BORDER);
 		listCucina.setBounds(151, 170, 116, 85);
 		
-		List listCotte = new List(shlPizzeriaTorregrando, SWT.BORDER);
+		listCotte = new List(shlPizzeriaTorregrando, SWT.BORDER);
 		listCotte.setBounds(308, 170, 116, 85);
 		
 		Button btnApri = new Button(shlPizzeriaTorregrando, SWT.NONE);
 		btnApri.addSelectionListener(new SelectionAdapter() {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
+				System.out.println("Pizzeria aperta");
 				Pizzaiolo pizzaiolo1 = new Pizzaiolo(listino);
 				Pizzaiolo pizzaiolo2 = new Pizzaiolo(listino);
 				Thread t1 = new Thread(pizzaiolo1);
@@ -95,6 +128,7 @@ public class Grafica {
 			@Override
 			public void widgetSelected(SelectionEvent e) {
 				num = 0;
+				System.out.println("Pizzeria chiusa");
 			}
 		});
 		btnChiudi.setBounds(335, 275, 89, 25);
@@ -113,8 +147,6 @@ public class Grafica {
 						Cliente c = new Cliente(Pizza, listino);
 						Thread ThreadCliente = new Thread(c);
 						ThreadCliente.start();
-						listCoda.add(Pizza);
-						
 						pizzeCoda++;	
 					}
 				}
@@ -125,7 +157,7 @@ public class Grafica {
 			}
 		});
 		btnCliente.setBounds(10, 101, 100, 25);
-		btnCliente.setText("Arriva cliente");
+		btnCliente.setText("Ordina Pizza!");
 		
 		
 		

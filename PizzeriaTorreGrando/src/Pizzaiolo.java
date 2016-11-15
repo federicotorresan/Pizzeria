@@ -18,7 +18,7 @@ public class Pizzaiolo implements Runnable{
 			// fa la pizza (aspetta)
 			System.out.println(Thread.currentThread().getName()+" Pizza in preparazione: " + pizza);
 			try {
-				Thread.sleep(1000);
+				Thread.sleep(1500);
 			} catch (InterruptedException e) {
 				// TODO Auto-generated catch block
 				e.printStackTrace();

@@ -5,19 +5,22 @@ public class Lista {
 	ArrayList<String> pizzeCotte;
 	ArrayList<String> pizzeInCoda;
 	public Lista pizzePronte;
+	private Grafica gr;
 
 	// costruttore
-	public Lista() {
+	public Lista(Grafica gr) {
 		pizzeInCoda = new ArrayList<String>();
 		pizzeOrdinate = new ArrayList<String>();
 		pizzeCotte = new ArrayList<String>();
+		this.gr=gr;
 	}
 
 	// metodi
 	public synchronized void ordinaPizza(String nome) {
 		pizzeOrdinate.add(nome);
-		System.out.println("ho aggiunto una pizza");
+		System.out.println("Ho aggiunto una pizza");
 		notifyAll();
+		gr.aggiungiNuovoOrdine(nome);
 	}
 
 	public synchronized String pizzaInLista() {
@@ -38,7 +41,14 @@ public class Lista {
 		pizzeInCoda.add(nome);
 		pizzeCotte.add(nome);
 		notifyAll();
-		System.out.println("La pizza : " + nome + " è pronta");
+		System.out.println("La pizza: " + nome + " è pronta");
+		gr.aggiungiNuovaCottura(nome);
+		try {
+			Thread.sleep(1000);
+		} catch (InterruptedException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 
 	}
 
@@ -53,7 +63,8 @@ public class Lista {
 		}
 		pizzeInCoda.remove(nome);
 		pizzeCotte.remove(nome);
-		System.out.println("Ho prelevato la pizza " + nome);
+		System.out.println("Il cliente ha prelevato la pizza: " + nome);
+		gr.aggiungiNuovaPizzaPronta(nome);
 	}
 
 	public ArrayList<String> getOrdinazioniPizze() {
